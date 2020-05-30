@@ -2,11 +2,12 @@
 Data analytics job market:
 
   Datasets:
-  - glassdoor: no free api
-  - indeed: waiting for answer
+  - glassdoor API: no free api
+  - indeed API: waiting for answer
   - https://developer.usajobs.gov/API-Reference
   - https://www.kaggle.com/sl6149/data-scientist-job-market-in-the-us
   - https://www.bls.gov/developers/
+  - https://developer.linkedin.com/docs/v1/jobs/job-search-api
   
   Sources:
   - https://www.linkedin.com/jobs/browse/data-analyst
