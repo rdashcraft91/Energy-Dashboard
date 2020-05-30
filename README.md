@@ -9,4 +9,5 @@ Data analytics job market:
   
   Sources:
   - https://www.linkedin.com/jobs/browse/data-analyst
+  - https://www.glassdoor.com/research/job-market-report-united-states/
   
