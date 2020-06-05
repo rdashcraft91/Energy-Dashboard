@@ -15,12 +15,11 @@ Keywords for scraping: Data Analyst, Data Scientist, Data Engineer
 
 
   Datasets:
-  - glassdoor API: scraping (Luis)
+  - glassdoor API: scraping (Vik)
   - ziprecruiter (Luis)
-  - indeed API: scraping (Vik)
-  - monster: look for api, otherwise scraping (Florin)
+  - indeed: scraping (Vik)
+  - monster: look for api, otherwise scraping (Ryan)
   - https://developer.usajobs.gov/API-Reference :working on API (Florin)
-  - https://www.bls.gov/developers/: working on API (Ryan)
   - Pending: https://developer.linkedin.com/docs/v1/jobs/job-search-api
   
   
@@ -29,6 +28,9 @@ Keywords for scraping: Data Analyst, Data Scientist, Data Engineer
   - https://www.glassdoor.com/research/job-market-report-united-states/
   - https://www.linkedin.com/salary/explorer?countryCode=xx&geoId=103644278&titleId=340
   - example: https://www.kaggle.com/sl6149/data-scientist-job-market-in-the-us
+  
+  Excluded:
+  - https://www.bls.gov/developers/: working on API (Ryan)
   
 
   
