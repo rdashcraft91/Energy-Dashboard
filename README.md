@@ -7,7 +7,7 @@ Keywords for scraping: Data Analyst, Data Scientist, Data Engineer
  Data required:
   - company
   - job title
-  - tools (python, excel, etc)
+  - job description (includes tools: python, excel, etc)
   - degree (optional)
   - date
   - salary
