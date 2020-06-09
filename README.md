@@ -1,6 +1,7 @@
 # Project2
 
 Topic:
+
 Q1: What is the USA total energy consumption/production by source (coal, crude oil etc...)?
 https://www.eia.gov/opendata/qb.php?category=711239
 
@@ -14,7 +15,8 @@ Q4: What is the average retail price of oil and gas by state and sector?
 same as Q3
 
 
-EIA dashboard: Examples:
+Examples:
+
 - https://www.eia.gov/naturalgas/storage/dashboard/ 
 - https://ourworldindata.org/energy#
 - https://www.washingtonpost.com/graphics/national/power-plants/
