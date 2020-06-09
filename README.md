@@ -12,7 +12,7 @@ Q3: What is the average retail price of electricity by state and sector?
 https://www.eia.gov/opendata/qb.php?category=40
 
 Q4: What is the average retail price of oil and gas by state and sector?
-same as Q3
+https://www.eia.gov/opendata/qb.php?category=241020
 
 
 Examples:
