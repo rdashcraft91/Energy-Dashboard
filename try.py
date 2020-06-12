@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from mongo_conn import mongo_pass
 
 # setup mongo connection
-conn = f"mongodb+srv://rdashcraft91:{mongo_pass}@cluster0-qoy1h.mongodb.net/test"
+conn = f"mongodb+srv://all_user:eiaproject@cluster0-qoy1h.mongodb.net/test"
 client = MongoClient(conn)
 
 
@@ -52,7 +52,7 @@ def get_state_energy():
 
 # @app.route("/api/v1.0/info")
 # def get_all_user_results():
-#     return jsonify(data.get_data_by_user())    
+#     return jsonify(data.get_data_by_user())    templa
 
 # @app.route("/api/v1.0/info/<subject_id>")
 # def get_one_user_results(subject_id):

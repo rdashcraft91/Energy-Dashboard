@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from mongo_conn import mongo_pass
 
 # setup mongo connection
-conn = f"mongodb+srv://rdashcraft91:{mongo_pass}@cluster0-qoy1h.mongodb.net/test"
+conn = f"mongodb+srv://all_user:eiaprojectx @cluster0-qoy1h.mongodb.net/test"
 client = MongoClient(conn)
 
 
