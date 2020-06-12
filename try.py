@@ -2,9 +2,10 @@
 from flask import Flask, jsonify, render_template
 import json
 from pymongo import MongoClient
+from mongo_conn import mongo_pass
 
 # setup mongo connection
-conn = "mongodb+srv://rdashcraft91:R4%24hcr4ft13@cluster0-qoy1h.mongodb.net/test"
+conn = f"mongodb+srv://rdashcraft91:{mongo_pass}@cluster0-qoy1h.mongodb.net/test"
 client = MongoClient(conn)
 
 
