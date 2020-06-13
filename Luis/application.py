@@ -14,6 +14,7 @@ client = pymongo.MongoClient("mongodb+srv://all_user:eiaproject@cluster0-qoy1h.m
 db = client.eia_db
 total_energy = db.total_energy
 state_energy = db.state_collection
+electricy_prices = db.energy_prices
 
 
 #################################################
@@ -37,7 +38,8 @@ def show_apis():
     return (
         f"<h4>Available Routes:</h4>"
         f'<a href="/api/v1.0/total_energy">/api/v1.0/total_energy</a><br/>'
-        f'<a href="/api/v1.0/state_energy">/api/v1.0/state_energy</a><br/>'        
+        f'<a href="/api/v1.0/state_energy">/api/v1.0/state_energy</a><br/>' 
+        f'<a href="/api/v1.0/electricity_prices">/api/v1.0/electricity_prices</a><br/>'        
 
     )    
 
@@ -51,6 +53,12 @@ def get_total_energy():
 def get_state_energy():
     # data = state_energy.find_one('consumption') # To select one id of data
     data = list(state_energy.find())  # To look at all data
+    return jsonify(data)  
+
+@app.route("/api/v1.0/electricity_prices")
+def get_electric_prices():
+    # data = state_energy.find_one('consumption') # To select one id of data
+    data = list(electricy_prices.find())  # To look at all data
     return jsonify(data)  
 
 # @app.route("/api/v1.0/info/<subject_id>")
