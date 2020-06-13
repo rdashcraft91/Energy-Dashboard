@@ -19,14 +19,20 @@
         <p><a href="/api/v1.0">Available APIs</a></p>
       </div>
     </div>
+
     <div class="row">
-      <h3>US National Overview of Energy Sources</h3>
-      <select id="selTotalEnergy" onchange="buildEnergyPlot(this.value)">
+      <h2>US National Overview of Energy Sources</h2>
+      <select id="selTotalEnergy" onchange="getTotalEnergyData(this.value)">
         <option value="production">Production</option>
         <option value="consumption">Consumption</option>
       </select>
       <div id="totalUSplot"></div>
+      <div class="row">
+        <select id="selTotalEnergyYear" onchange="getTotalEnergyData(this.value)"></select>
+        <div id="totalUSpie"></div>
+      </div>
     </div>
+
     <div class="row">
       <h3>State Energy</h3>
       <select id="selStateEnergy" onchange="buildStateEnergyPlot(this.value)">
@@ -50,7 +56,7 @@
       </select>
       <div id="Electricplot"></div>
     </div>
-    
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
