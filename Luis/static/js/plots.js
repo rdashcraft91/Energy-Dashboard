@@ -1,41 +1,58 @@
-function buildPlot() {
+
+
+// Function to build total overview plot of US production/consumption
+function buildEnergyPlot() {
   var dataUrl = `/api/v1.0/total_energy`;
 
-
   d3.json(dataUrl).then(function (data) {
-    // Grab values from the response json object to build the plots
+
+    // D3 select tag
+    var dropdownMenu = d3.select("#selTotalEnergy");
+    // Assign the value of the dropdown menu option to a variable
+    var totalEnergySelection = dropdownMenu.property("value");
+    // Set up data for production and consumption
     var productionData = data[0];
     var consumptionData = data[1];
-    console.log(productionData)
-    console.log(consumptionData)
+    var dataset = []
+  
+    // Check to see what value is selected in the table
+    if (totalEnergySelection == 'production') {
+        dataset = productionData;
+        var titleName = "Total US Production Breakdown by Source"
+        
+    }
+    else if (totalEnergySelection == 'consumption') {
+      dataset = consumptionData;
+      var titleName = "Total US Consumption Breakdown by Source"
+    }
 
-    var keys = Object.keys(productionData)
+    // Loop through keys in dataset and delete _id key so we dont plot it
+    var keys = Object.keys(dataset)
     for (var i = 0; i < keys.length; i++) {
       if (keys[i] === '_id') {
         keys.splice(i, 1);
       }
     };
-    console.log(keys)
 
+    // Plot chart
     var traces = []
 
+    // Loop through each key in dictionary and create a trace which is stored in traces (list)
     keys.forEach(function(key){
       var trace = {
         type: "scatter",
         mode: "lines",
         name: key,
-        x: productionData[key].series[0].data.map(row => row[0]),
-        y: productionData[key].series[0].data.map(row => row[1])
+        x: dataset[key].series[0].data.map(row => row[0]),
+        y: dataset[key].series[0].data.map(row => row[1])
       }
       traces.push(trace)
 
     });
-    console.log(traces)
 
-    var dataPlot = traces;
-
+    // Create properties for layout of graph
     var layout = {
-      title: 'Production Data',
+      title: titleName,
       xaxis: {
         title: "Year",
         type: "date",
@@ -47,12 +64,16 @@ function buildPlot() {
       }
     };
 
-    Plotly.newPlot("plot", dataPlot, layout);
+    Plotly.newPlot("totalUSplot", traces, layout);
 
   });
 }
 
-buildPlot();
+// On change to the DOM, call buildEnergyPlot()
+d3.selectAll("#selTotalEnergy").on("change", buildEnergyPlot());
+
+
+buildEnergyPlot();
 
 
 // // Initialize the dashboard

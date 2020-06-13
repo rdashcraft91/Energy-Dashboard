@@ -14,7 +14,8 @@ client = pymongo.MongoClient("mongodb+srv://all_user:eiaproject@cluster0-qoy1h.m
 db = client.eia_db
 total_energy = db.total_energy
 state_energy = db.state_collection
-electricy_prices = db.energy_prices
+price_data = db.price_data
+energy_prices = db.energy_prices
 
 
 #################################################
@@ -38,8 +39,9 @@ def show_apis():
     return (
         f"<h4>Available Routes:</h4>"
         f'<a href="/api/v1.0/total_energy">/api/v1.0/total_energy</a><br/>'
-        f'<a href="/api/v1.0/state_energy">/api/v1.0/state_energy</a><br/>' 
-        f'<a href="/api/v1.0/electricity_prices">/api/v1.0/electricity_prices</a><br/>'        
+        f'<a href="/api/v1.0/state_energy">/api/v1.0/state_energy</a><br/>'
+        f'<a href="/api/v1.0/price_data">/api/v1.0/price_data</a><br/>' 
+        f'<a href="/api/v1.0/energy_prices">/api/v1.0/energy_prices</a><br/>'         
 
     )    
 
@@ -55,24 +57,15 @@ def get_state_energy():
     data = list(state_energy.find())  # To look at all data
     return jsonify(data)  
 
-@app.route("/api/v1.0/electricity_prices")
-def get_electric_prices():
-    # data = state_energy.find_one('consumption') # To select one id of data
-    data = list(electricy_prices.find())  # To look at all data
+@app.route("/api/v1.0/price_data")
+def get_price_data():
+    data = list(price_data.find())  # To look at all data
+    return jsonify(data)     
+
+@app.route("/api/v1.0/energy_prices")
+def get_energy_prices():
+    data = list(energy_prices.find())  # To look at all data
     return jsonify(data)  
-
-# @app.route("/api/v1.0/info/<subject_id>")
-# def get_one_user_results(subject_id):
-#     return jsonify(data.get_data_by_user(subject_id))    
-
-# @app.route("/api/v1.0/subjects")
-# def get_all_subjects():
-#     return jsonify(data.get_subjects())
-
-# @app.route("/api/v1.0/subjects/<subject_id>")
-# def get_one_subject(subject_id):
-#     return jsonify(data.get_subjects(subject_id))
-
 
 
 if __name__ == '__main__':
