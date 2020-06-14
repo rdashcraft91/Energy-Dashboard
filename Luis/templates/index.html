@@ -45,7 +45,11 @@
 
     <div class="row">
       <h3>Electric Energy Prices</h3>
-      <select id="selElectricPrices" onchange="buildElectricPricesPlot(this.value)">
+      <select id="selElectricPrices" onchange="buildEnergyPricesPlot(this.value)">
+        <option value="residential">Residential</option>
+        <option value="commercial">Commercial</option>
+        <option value="industrial">Industrial</option>
+        <option value="all">All</option>
 
       </select>
       <div id="Electricplot"></div>
@@ -55,7 +59,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="static/js/plots.js"></script>
+  <script src="static/js/luis_3.js"></script>
 
 </body>
 
