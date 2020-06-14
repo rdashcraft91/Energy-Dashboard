@@ -134,7 +134,6 @@ function getStateSunburstData() {
     console.log(data);
 
     delete data[0]._id;
-    delete data[1]._id;
 
     console.log(data[0]);
 
@@ -173,19 +172,23 @@ function getStateSunburstData() {
     var geoTotal = 0;
     var solarTotal = 0;
     var windTotal = 0;
+    var woodTotal= 0;
 
     commonSource.forEach(function(result) {
-      if (Object.values(result)[0] === 'Bio') {
+      if (Object.values(result)[0] === 'Biomass') {
         bioTotal += Object.values(result)[1];
       }
       else if (Object.values(result)[0] === 'Hydro') {
         hydroTotal += Object.values(result)[1];
       }
-      else if (Object.values(result)[0] === 'Geo') {
+      else if (Object.values(result)[0] === 'Geothermal') {
         geoTotal += Object.values(result)[1];
       }
       else if (Object.values(result)[0] === 'Solar') {
         solarTotal += Object.values(result)[1];
+      }
+      else if (Object.values(result)[0] === 'Wood/Waste') {
+        woodTotal += Object.values(result)[1];
       }
       else {
         windTotal += Object.values(result)[1];
