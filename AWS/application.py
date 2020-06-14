@@ -13,7 +13,7 @@ client = pymongo.MongoClient("mongodb+srv://all_user:eiaproject@cluster0-qoy1h.m
 # connect to mongo db and collection
 db = client.eia_db
 total_energy = db.total_energy
-state_energy = db.state_collection
+state_energy = db.state_energy
 price_data = db.price_data
 energy_prices = db.energy_prices
 
