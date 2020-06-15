@@ -5,66 +5,90 @@
 
 Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
     console.log(rows)
+    dbDataSet = listLoop(rows[0])
+
     function unpack(rows, key) {
-        //function to transform structure of the data loaded
-        function listLoop(inputData){ 
-            var outputData = []
-            console.log("inputData=", inputData)
-            for (var i = 0; i < inputData.state.length; i++) {
 
-                var max_loop 
-                
-                if (Array.isArray(inputData.state[i])) {
-                     max_loop = inputData.state[i].length;
-                    }
-                    else{max_loop = 1}
-
-                for (var j = 0; j < max_loop; j++) {
-
-
-                        var object = {}
-                        object.price = inputData.data[i][5][1]
-                        object.formulation = inputData.formulation[i]
-                        object.fuel = inputData.fuel[i]
-                        object.grade = inputData.grade[i]
-                        object.state = inputData.state[i][j] 
-                        object.priceList = inputData.data[i]
-                        //object.price = inputData.
-                        outputData.push(object)  
-                    //}
-                    // console.log("object",object)
-                }
-            }
-            console.log("outputData", outputData)
-            return outputData    
-        }
-    
-        // //Apply filters
-
-        // var keysFilter = Object.keys(filters)
-
-        // var filteredValue = false
-        // for (var k = 0; k < keysFilter.length; k++) {
-        //     console.log("filters" ,filters)
-        //     console.log("keysFilter" ,keysFilter[k])
-        //     console.log("filters[keysFilter[k]" ,filters[keysFilter[k]])
-        //     console.log("keysFilter" ,keysFilter[k])
-        //     console.log("inputData[keysFilter[k]][i]" ,inputData[keysFilter[k]][i])
-        //     console.log("equality", filters[keysFilter[k]] == inputData[keysFilter[k]][i])
-        //     console.log("              ")
-
-        //     if (filters[keysFilter[k]] != inputData[keysFilter[k]][i]){
-        //         filteredValue = true
-        //     }
-        //     // console.log("filteredValue",filteredValue)
-        // }
-        // if (filteredValue == false){
-        rows = listLoop(rows[0])
+        rows = dbDataSet
 
     return rows.map(function(row) { 
         return row[key]; });
     }
 
+    //function to transform structure of the data loaded
+    function listLoop(inputData){ 
+        var outputData = []
+        // console.log("inputData=", inputData)
+        for (var i = 0; i < inputData.state.length; i++) {
+
+            var max_loop 
+            
+            if (Array.isArray(inputData.state[i])) {
+                    max_loop = inputData.state[i].length;
+                }
+                else{max_loop = 1}
+
+            for (var j = 0; j < max_loop; j++) {
+
+
+                    var object = {}
+                    object.price = inputData.data[i][5][1]
+                    object.formulation = inputData.formulation[i]
+                    object.fuel = inputData.fuel[i]
+                    object.grade = inputData.grade[i]
+                    object.state = inputData.state[i][j] 
+                    object.priceList = inputData.data[i]
+                    //object.price = inputData.
+                    outputData.push(object)  
+                //}
+                // console.log("object",object)
+            }
+        }
+        console.log("outputData", outputData)
+        return outputData    
+    }
+
+    var testFilters = {
+        "formulation" : "All Formulations",
+        "fuel" : "gasoline",
+        "grade" : "All Grades",
+        "state" : "USA"
+    }
+
+    //applyFilters(rows, testFilters)
+
+    //Apply filters
+    function applyFilters(inputData, filters, outputData){
+
+        outputData = inputData.map(item =>{
+
+                filtervalue = true
+                if (item["formulation"] != filters["formulation"]){
+                    filtervalue = false
+                }
+                if (item["fuel"] != filters["fuel"]){
+                    filtervalue = false
+                }
+                if (item["grade"] != filters["grade"]){
+                    filtervalue = false
+                }
+                if (item["state"] != filters["state"]){
+                    filtervalue = false
+                }
+
+                if (filtervalue == true){
+                    return item
+                }
+                // if (filteredValue == false){
+                //     return item
+                // }
+            })
+            outputData = outputData.filter(function( element ) {
+                return element !== undefined;
+            });
+        console.log("outputData",outputData)
+        return outputData
+    }
     // var dataChloroplethFilters = {
     //     "formulation" : "All Formulations",
     //     "fuel" : "gasoline",
@@ -78,7 +102,7 @@ Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
     //     "grade" : "All Grades",
     //     "state" : "USA"
     // }
-    console.log("rows",rows)
+    // console.log("rows",rows)
 
     var dataChloropleth = [{
         type: 'choropleth',
@@ -109,13 +133,17 @@ Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
 
     //console.log(rows)
     //extract date values
-    //console.log(dataAxis)
-    dateAxis = unpack(rows, 'priceList').map(function(row,index){
+    console.log("dbDataSet",dbDataSet)
+    var lineDataSet = applyFilters(dbDataSet, testFilters)
+    console.log("lineDataSet", lineDataSet[0]["priceList"])
+
+    var dateAxis = lineDataSet[0]["priceList"].map(function(row,index){
+        console.log("row" , row, "index =" , index)
         try{
             date = 
-                row[index][0].slice(0, 4)+"-"+
-                row[index][0].slice(4, 6)+"-"+
-                row[index][0].slice(6, 8)//+" 00:00:00"
+                row[0].slice(0, 4)+"-"+
+                row[0].slice(4, 6)+"-"+
+                row[0].slice(6, 8)//+" 00:00:00"
             //console.log(date)
         }
         catch (err){
@@ -123,7 +151,7 @@ Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
         }
         return date})
 
-    priceAxis = unpack(rows, 'priceList').map(function(row){return row[0][1]}),
+    priceAxis = lineDataSet[0]["priceList"].map(function(row){return row[1]}),
 
     dataLineChart = [{
         x: dateAxis,
