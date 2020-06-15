@@ -1,5 +1,3 @@
-
-
 // FUNCTION TO GET DATA FOR TOTAL OVER OF ENERGY PRODUCTION/CONSUMPTION
 function getTotalEnergyData() {
   var dataUrl = `/api/v1.0/total_energy`;

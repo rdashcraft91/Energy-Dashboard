@@ -2,3 +2,7 @@ h2 {
     text-align: center;
     text-decoration: underline;
 }
+
+.state-header {
+    background: url(https://www.greenmountainenergy.com/wp-content/themes/gmec-bones/assets/images/renewable-energy-sources/bg-desktop.png);
+}
