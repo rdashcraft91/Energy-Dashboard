@@ -12,12 +12,13 @@
 
 <body>
 
-  <div class="container">
+  <div class="container" id="top">
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
         <h1>U.S. Energy Information Administration (EIA) Dashboard</h1>
         <p>Use the interactive charts below to explore the dataset</p>
-        <p><a href="/api/v1.0">Available APIs</a></p>
+        <p><a href="/api/v1.0">Available APIs</a><br>
+      </p>
       </div>
     </div>
 
@@ -40,17 +41,21 @@
     </div>
 
     <div class="row">
-      <h2>State Energy</h2>
-
-      <div id="totalStateplot"></div>
-
+      <h2 class="state-header">Breakdown of Renewable Energy Sources</h2>
       <div class="row">
         <select id="selStateEnergy" onchange="buildStateBar()">
           <option value="All">All</option>
         </select>
         <div id="stateBar"></div>
       </div>
-
+      <div class="row">
+        <div class="col-lg-6 state-img">
+          <img width="100%" src="https://ensia.com/wp-content/uploads/2017/01/voices_energy_numbers_main-760x378.jpg"/>
+        </div>
+        <div class="col-lg-6">
+          <div id="totalStateplot"></div>
+        </div>
+      </div>
     </div>
 
     <div class="row">
@@ -58,7 +63,8 @@
       <select id="selPetroleumPrices" onchange="buildPetroleumPricesPlot(this.value)">
 
       </select>
-      <div id="petroleumPlot"></div>
+      <div id="map"></div>
+      <div id="chart"></div>
     </div>
 
     <div class="row">
@@ -75,6 +81,7 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="static/js/vplots.js"></script>
   <script src="static/js/rplots.js"></script>
+  <script src="static/js/fplots.js"></script>
 
 </body>
 
