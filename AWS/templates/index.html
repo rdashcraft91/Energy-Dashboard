@@ -35,10 +35,15 @@
 
     <div class="row">
       <h3>State Energy</h3>
-      <select id="selStateEnergy" onchange="buildStateEnergyPlot(this.value)">
 
-      </select>
       <div id="totalStateplot"></div>
+
+      <div class="row">
+        <select id="selStateEnergy" onchange="buildStateBar()">
+          <option value="All">All</option></select>
+        <div id="stateBar"></div>
+      </div>
+
     </div>
 
     <div class="row">
