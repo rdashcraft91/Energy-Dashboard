@@ -67,7 +67,6 @@ function buildStateSunburstPlot(data) {
   var geoTotal = 0;
   var solarTotal = 0;
   var windTotal = 0;
-  var woodTotal= 0;
 
   commonSource.forEach(function(result) {
     if (Object.values(result)[0] === 'Biomass') {
@@ -81,9 +80,6 @@ function buildStateSunburstPlot(data) {
     }
     else if (Object.values(result)[0] === 'Solar') {
       solarTotal += Object.values(result)[1];
-    }
-    else if (Object.values(result)[0] === 'Wood/Waste') {
-      woodTotal += Object.values(result)[1];
     }
     else {
       windTotal += Object.values(result)[1];
@@ -183,7 +179,6 @@ d3.json(StateUrl).then(function (data) {
   var barBio = 0;
   var barGeo = 0;
   var barHydro = 0;
-  var barWood = 0;
   var barSolar = 0;
   var barWind = 0;
 
@@ -194,9 +189,8 @@ d3.json(StateUrl).then(function (data) {
     barBio += Object.values(stateData[1])[0];
     barGeo += Object.values(stateData[1])[1];
     barHydro += Object.values(stateData[1])[2];
-    barWood += Object.values(stateData[1])[3];
-    barSolar += Object.values(stateData[1])[4];
-    barWind += Object.values(stateData[1])[5];
+    barSolar += Object.values(stateData[1])[3];
+    barWind += Object.values(stateData[1])[4];
   
   });
 
@@ -238,7 +232,7 @@ d3.json(StateUrl).then(function (data) {
       var trace = {
         type: "bar",
         x: Object.keys(stateData[1]),
-        y: [barBio, barGeo, barHydro, barSolar, barWind, barWood]
+        y: [barBio, barGeo, barHydro, barSolar, barWind]
       }
       var data = [trace];
       // Create Layout

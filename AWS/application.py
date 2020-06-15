@@ -53,7 +53,7 @@ def get_total_energy():
 
 @app.route("/api/v1.0/state_energy")
 def get_state_energy():
-    # data = state_energy.find_one('consumption') # To select one id of data
+    # data = state_energy.find_one('state_consumption') # To select one id of data
     data = list(state_energy.find())  # To look at all data
     return jsonify(data)  
 
