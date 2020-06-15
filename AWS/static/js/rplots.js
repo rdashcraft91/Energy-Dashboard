@@ -122,7 +122,7 @@ function buildStateSunburstPlot(data) {
   var layout = {
     "margin": {"l": 0, "r": 0, "b": 0, "t": 30},
     "title": "Most Used Renewable Energy Source by State",
-    sunburstcolorway:['#9C1D17', '#33CAFF', '#FFE333', '#1E4923']
+    sunburstcolorway:['#1f77b4', '#2ca02c', '#ff7f0e', '#d62728']
   };
 
   Plotly.newPlot('totalStateplot', data, layout, {showSendToCloud: true})
@@ -210,7 +210,7 @@ d3.json(StateUrl).then(function (data) {
         x: Object.keys(stateData[1]),
         y: Object.values(stateData[1]),
         marker:{
-          color: ['#9C1D17', '#5D3E20', '#33CAFF', '#FFE333', '#1E4923']
+          color: ['#1f77b4', '#9467bd', '#2ca02c', '#d62728', '#ff7f0e']
         }
       }
       console.log(trace);
@@ -238,7 +238,7 @@ d3.json(StateUrl).then(function (data) {
         x: Object.keys(stateData[1]),
         y: [barBio, barGeo, barHydro, barSolar, barWind],
         marker:{
-          color: ['#9C1D17', '#5D3E20', '#33CAFF', '#FFE333', '#1E4923']
+          color: ['#1f77b4', '#9467bd', '#2ca02c', '#d62728', '#ff7f0e']
         }
       }
       var data = [trace];
