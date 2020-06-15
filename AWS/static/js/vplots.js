@@ -122,11 +122,5 @@ function buildTotalEnergyPie(dataset, keys, titlePie) {
 };
 
 
+
 getTotalEnergyData();
-
-
-
-
-
-// // Initialize the dashboard
-// init();
