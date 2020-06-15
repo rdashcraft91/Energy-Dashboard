@@ -1,12 +1,10 @@
-// Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_usa_states.csv", function(err, rows){
-//     console.log(rows)
-// })
-
 
 Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
-    console.log(rows)
+
+    //restructured dataset
     dbDataSet = listLoop(rows[0])
 
+    //function used to feed data to plotly charts
     function unpack(rows, key) {
 
         rows = dbDataSet
@@ -16,9 +14,9 @@ Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
     }
 
     //function to transform structure of the data loaded
+    //to adapt to the plotly input format
     function listLoop(inputData){ 
         var outputData = []
-        // console.log("inputData=", inputData)
         for (var i = 0; i < inputData.state.length; i++) {
 
             var max_loop 
@@ -29,92 +27,135 @@ Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
                 else{max_loop = 1}
 
             for (var j = 0; j < max_loop; j++) {
-
-
                     var object = {}
-                    object.price = inputData.data[i][5][1]
                     object.formulation = inputData.formulation[i]
                     object.fuel = inputData.fuel[i]
                     object.grade = inputData.grade[i]
                     object.state = inputData.state[i][j] 
                     object.priceList = inputData.data[i]
-                    //object.price = inputData.
                     outputData.push(object)  
-                //}
-                // console.log("object",object)
             }
         }
-        console.log("outputData", outputData)
         return outputData    
     }
 
-    var testFilters = {
+    //function to apply filters to get data needed for the charts
+    function applyFilters(inputData, filters){
+
+        inputData = inputData.filter(function(item) {
+            for (var key in filters) {
+                if (item[key] === undefined || item[key] != filters[key])
+                return false;
+            }
+            return true;
+            })
+        return inputData
+    }
+
+    //filters applied on db data, to display the chloropleth chart
+    var dataChloroplethFilters = {
         "formulation" : "All Formulations",
         "fuel" : "gasoline",
         "grade" : "All Grades",
-        "state" : "USA"
     }
 
-    //applyFilters(rows, testFilters)
+    //title of the chloropleth chart
+    titleChloropleth = `Prices of ${dataChloroplethFilters.fuel} (USD/gal), `+
+    `${dataChloroplethFilters.formulation}, `+
+    `${dataChloroplethFilters.grade}`
 
-    //Apply filters
-    function applyFilters(inputData, filters, outputData){
+    //data for cloropleth chart
+    cloroplethDataSet = applyFilters(dbDataSet, dataChloroplethFilters)
+    locationsDataSet = unpack(cloroplethDataSet, 'state')
 
-        outputData = inputData.map(item =>{
-
-                filtervalue = true
-                if (item["formulation"] != filters["formulation"]){
-                    filtervalue = false
+    //get index for date from dataset used further to return the price
+    function getDateIndex(cloroplethDataSet, dateSelection){
+            zAllDataset = unpack(cloroplethDataSet, 'priceList')
+            // console.log("zAllDataset", zAllDataset)
+            zDisplayedIndex = zAllDataset[0].map(function(item,index){
+                if (item[0] == dateSelection){
+                    return index
                 }
-                if (item["fuel"] != filters["fuel"]){
-                    filtervalue = false
-                }
-                if (item["grade"] != filters["grade"]){
-                    filtervalue = false
-                }
-                if (item["state"] != filters["state"]){
-                    filtervalue = false
-                }
-
-                if (filtervalue == true){
-                    return item
-                }
-                // if (filteredValue == false){
-                //     return item
-                // }
             })
-            outputData = outputData.filter(function( element ) {
-                return element !== undefined;
-            });
-        console.log("outputData",outputData)
-        return outputData
+            return zDisplayedIndex = zDisplayedIndex.filter(function(item){
+                return item !== undefined
+            })[0]
     }
-    // var dataChloroplethFilters = {
-    //     "formulation" : "All Formulations",
-    //     "fuel" : "gasoline",
-    //     "grade" : "All Grades",
-    //     //"date" : "..."
-    // }
-    
-    // var dataLineFilters = {
-    //     "formulation" : "All Formulations",
-    //     "fuel" : "gasoline",
-    //     "grade" : "All Grades",
-    //     "state" : "USA"
-    // }
-    // console.log("rows",rows)
 
+    //starting date of the Chloropleth chart
+    dateSelection = "20030526"
+
+    //date index to take the price
+    zDisplayedIndex = getDateIndex(cloroplethDataSet, dateSelection)
+
+    //date dataset
+    zDateDataSet = zAllDataset[0].map(function(row,index){
+        return date = row[0]})
+
+    zPriceDataSet = cloroplethDataSet.map(function(item){
+        return item["priceList"][zDisplayedIndex][1]
+    })
+
+    //define all the frames for the chloropleth chart time slider 
+    var framesCloropleth = zDateDataSet.map(function(item){
+        index = getDateIndex(cloroplethDataSet,item)
+        var object = {}
+        try{
+            object.data = [{"z" : cloroplethDataSet.map(function(item){
+                return item["priceList"][index][1].toString()}
+                )}]
+
+        object.traces = [0]
+        object.name = item
+        //object.layout = {title: titleChloropleth}
+        return object 
+        }
+
+        catch{
+        }
+    })
+    //clean frames without data
+    framesCloropleth = framesCloropleth.filter(function(item){
+        return item !== undefined
+    })
+
+    //sort frames in ascending order
+    framesCloropleth = framesCloropleth.sort(function(a, b){
+        if (parseInt(a.name) < parseInt(b.name)){
+            return -1
+        }
+        if (parseInt(a.name) > parseInt(b.name)){
+            return 1
+        }
+        return 0
+        
+    })
+
+    //define the chloropleth slider properties
+    slidersCloropleth = [{
+        currentvalue: {
+          prefix: 'Date: ',
+        },
+        steps: framesCloropleth.map(f => ({
+          label: f.name.slice(0, 4)+"-"+f.name.slice(4, 6)+"-"+f.name.slice(6, 8),
+          method: 'animate',
+          args: [[f.name], {frame: {duration: 0}}]
+        }))
+      }]
+    
+    //define the preliminary data to be used in the chloropleth
     var dataChloropleth = [{
         type: 'choropleth',
         locationmode: 'USA-states',
-        locations: unpack(rows, 'state' ),
-        z: unpack(rows, 'price'),
-        text: unpack(rows, 'price'),
+        locations: locationsDataSet,
+        z: zPriceDataSet,
+        text: '$/gal',
         autocolorscale: true
     }];
 
+    //define the layout of the chloropleth chart
     var layoutChloropleth = {
-    title: 'US oil prices',
+    title: titleChloropleth,
         geo:{
             scope: 'usa',
             countrycolor: 'rgb(255, 255, 255)',
@@ -125,20 +166,34 @@ Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
             subunitcolor: 'rgb(255, 255, 255)',
             lonaxis: {},
             lataxis: {},
-        }
+        },
+        xaxis: {autorange: false},
+        yaxis: {autorange: false},
+        sliders: slidersCloropleth
     };
 
+    //plot the chloropleth chart
+    Plotly.plot('map', {
+        data: dataChloropleth,
+        layout: layoutChloropleth,
+        frames: framesCloropleth,
+        config: {showLink: false}
+    });
 
-    Plotly.newPlot("map", dataChloropleth, layoutChloropleth, {showLink: false});
+    //build line chart
 
-    //console.log(rows)
-    //extract date values
-    console.log("dbDataSet",dbDataSet)
-    var lineDataSet = applyFilters(dbDataSet, testFilters)
-    console.log("lineDataSet", lineDataSet[0]["priceList"])
+    //define filters from the data loaded
+    var dataLineFilters = {
+        "formulation" : "All Formulations",
+        "fuel" : "gasoline",
+        "grade" : "All Grades",
+        "state" : "USA"
+    }
+ 
+    //filter dataset for line chart
+    var lineDataSet = applyFilters(dbDataSet, dataLineFilters)
 
     var dateAxis = lineDataSet[0]["priceList"].map(function(row,index){
-        console.log("row" , row, "index =" , index)
         try{
             date = 
                 row[0].slice(0, 4)+"-"+
@@ -150,7 +205,8 @@ Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
             console.log("row" , row, "errorindex =" , index)
         }
         return date})
-
+    
+    
     priceAxis = lineDataSet[0]["priceList"].map(function(row){return row[1]}),
 
     dataLineChart = [{
@@ -160,63 +216,21 @@ Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
       }]
     
     var layoutLineChart = {
-        xaxis : {
-            range: ["1998-01-01", "2020-01-01"],
-            type: "date"
-          },
-        sliders: [{
-          pad: {t: 30},
-          len: 0.5,
-          x: 0.5,
-          currentvalue: {
-            xanchor: 'right',
-            prefix: 'color: ',
-            font: {
-              color: '#888',
-              size: 20
-            }
-          },
-          // If all of a component's commands affect a single attribute, the component
-          // will be bound to the plot and will automatically update to reflect changes.
-          steps: [{
-            label: 'red',
-            method: 'restyle',
-            args: ['line.color', 'red']
-          }, {
-            label: 'green',
-            method: 'restyle',
-            args: ['line.color', 'green']
-          }, {
-            label: 'blue',
-            method: 'restyle',
-            args: ['line.color', 'blue']
-          }]
-        }],
-        updatemenus: [{
-          pad: {t: 60, r: 30},
-          type: 'buttons',
-          xanchor: 'left',
-          yanchor: 'top',
-          x: 00,
-          y: 0,
-          direction: 'right',
-          buttons: [{
-            label: 'red',
-            method: 'restyle',
-            args: ['line.color', 'red']
-          }, {
-            label: 'green',
-            method: 'restyle',
-            args: ['line.color', 'green']
-          }, {
-            label: 'blue',
-            method: 'restyle',
-            args: ['line.color', 'blue']
-          }]
-        }]
-    }
+        title: `Prices of ${dataLineFilters.fuel}, `+
+        `${dataLineFilters.formulation}, `+
+        `${dataLineFilters.grade} in ${dataLineFilters.state}`,
+        xaxis: {
+            rangeslider: {},
+            title : {text :"Date"}
+        },
+        yaxis: {
+            fixedrange: true,
+            title : {text :"Price [$/gal]"}
+        }
+    };
     
     
     Plotly.newPlot('chart', dataLineChart , layoutLineChart);
+    
 }); 
 
