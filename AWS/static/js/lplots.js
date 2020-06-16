@@ -55,6 +55,8 @@ function barChart(currentState){
   
     };
 
+    barChart(currentState);
+
     Plotly.newPlot('barPlot', barTraces, layout);
 });
 
