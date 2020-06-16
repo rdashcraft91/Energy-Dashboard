@@ -125,7 +125,7 @@ function buildStateSunburstPlot(data) {
   var layout = {
     "margin": {"l": 0, "r": 0, "b": 0, "t": 30},
     "title": "Most Used Renewable Energy Source by State",
-    sunburstcolorway:['#1f77b4', '#2ca02c', '#ff7f0e', '#d62728']
+    sunburstcolorway:['#8c564b', '#7f7f7f', '#e377c2', '#bcbd22']
   };
 
   Plotly.newPlot('totalStateplot', data, layout, {showSendToCloud: true})
@@ -213,7 +213,7 @@ d3.json(StateUrl).then(function (data) {
         x: Object.keys(stateData[1]),
         y: Object.values(stateData[1]),
         marker:{
-          color: ['#1f77b4', '#9467bd', '#2ca02c', '#d62728', '#ff7f0e']
+          color: ['#8c564b', '#17becf', '#7f7f7f', '#bcbd22', '#e377c2']
         }
       }
       console.log(trace);
@@ -241,7 +241,7 @@ d3.json(StateUrl).then(function (data) {
         x: Object.keys(stateData[1]),
         y: [barBio, barGeo, barHydro, barSolar, barWind],
         marker:{
-          color: ['#1f77b4', '#9467bd', '#2ca02c', '#d62728', '#ff7f0e']
+          color: ['#8c564b', '#17becf', '#7f7f7f', '#bcbd22', '#e377c2']
         }
       }
       var data = [trace];
@@ -271,7 +271,7 @@ function buildProductionPlot(production, population){
     var labels = [];
     var colors=[];
     var nColors=50;
-    
+
     for (var i=0; i<nColors; i++)
       colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
     var ctx = document.getElementById('stateProdPlot').getContext('2d');
