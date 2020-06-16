@@ -125,7 +125,7 @@ function buildStateSunburstPlot(data) {
   var layout = {
     "margin": {"l": 0, "r": 0, "b": 0, "t": 30},
     "title": "Most Used Renewable Energy Source by State",
-    sunburstcolorway:['#1f77b4', '#2ca02c', '#ff7f0e', '#d62728']
+    sunburstcolorway:['#8c564b', '#7f7f7f', '#e377c2', '#bcbd22']
   };
 
   Plotly.newPlot('totalStateplot', data, layout, {showSendToCloud: true})
@@ -213,7 +213,7 @@ d3.json(StateUrl).then(function (data) {
         x: Object.keys(stateData[1]),
         y: Object.values(stateData[1]),
         marker:{
-          color: ['#1f77b4', '#9467bd', '#2ca02c', '#d62728', '#ff7f0e']
+          color: ['#8c564b', '#17becf', '#7f7f7f', '#bcbd22', '#e377c2']
         }
       }
       console.log(trace);
@@ -225,7 +225,7 @@ d3.json(StateUrl).then(function (data) {
           title: "Energy Source",
         },
         yaxis: {
-          title: 'Trillion BTUs (British Thermal Unit)',
+          title: 'British Thermal Units (BTU)',
           autorange: true,
         }
       };
@@ -241,7 +241,7 @@ d3.json(StateUrl).then(function (data) {
         x: Object.keys(stateData[1]),
         y: [barBio, barGeo, barHydro, barSolar, barWind],
         marker:{
-          color: ['#1f77b4', '#9467bd', '#2ca02c', '#d62728', '#ff7f0e']
+          color: ['#8c564b', '#17becf', '#7f7f7f', '#bcbd22', '#e377c2']
         }
       }
       var data = [trace];
@@ -252,7 +252,7 @@ d3.json(StateUrl).then(function (data) {
           title: "Energy Source",
         },
         yaxis: {
-          title: 'Trillion BTUs (British Thermal Unit)',
+          title: 'British Thermal Units (BTU)',
           autorange: true,
         }
       };
@@ -271,12 +271,13 @@ function buildProductionPlot(production, population){
     var labels = [];
     var colors=[];
     var nColors=50;
+
     for (var i=0; i<nColors; i++)
       colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
     var ctx = document.getElementById('stateProdPlot').getContext('2d');
 
     state_production.forEach(function(state){
-      var x_value = {'x': state[1]} 
+      var x_value = {'y': state[1]} 
       dataset.push(x_value);
     })
 
@@ -284,13 +285,13 @@ function buildProductionPlot(production, population){
       labels.push(state[0]);
     })
 
-    console.log(labels);
+    // console.log(labels);
 
-    console.log(dataset);
+    // console.log(dataset);
 
     for (var i=0; i < 51; i++) {
       // var y_value = {'y': state_population[1][i]}
-      dataset[i]['y'] = (state_population[i][1])
+      dataset[i]['x'] = (state_population[i][1])
     }
     
     console.log(dataset);
@@ -298,8 +299,9 @@ function buildProductionPlot(production, population){
       type: 'scatter',
       data: {
         datasets: [{
-            label: 'Scatter Dataset',
+            // label: ,
             data: dataset,
+            // backgroundColor: ['Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Red'],
             backgroundColor: colors,
             pointRadius: 10,
         }],
@@ -313,31 +315,32 @@ function buildProductionPlot(production, population){
               return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
             }
           }
-        },  
+        },
+      legend: {
+          display: false,
+      },
+      title: {
+        text: 'Total Renewable Energy Production by State Population',
+        fontSize: 24,
+        fontStyle: 'bold',
+        display: true,
+      },
       scales: {
             xAxes: [{
                 type: 'linear',
                 position: 'bottom',
-            }]
+                scaleLabel: {
+                  display: true,
+                  labelString: 'State Population'
+                }
+            }], 
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'British Thermal Units (BTU) Produced'
+              }
+          }], 
         }
     }
 });
 }
-      // data: {
-      //   datasets: [{
-      //       data: dataset,
-      //       backgroundColor: colors,
-      //   }],
-      //   // These labels appear in the legend and in the tooltips when hovering different arcs
-      //   labels: labels,
-      //   },
-      // options: {
-      //   legend: { display: false },
-      //   title: {
-      //     display: true,
-      //     text: 'Production by State'
-      //   },
-      // },
-      // type: 'scatter'
-//   });
-// }

@@ -1,5 +1,5 @@
 
-Plotly.d3.json("/api/v1.0/price_data", function(err, rows){
+Plotly.d3.json("/api/v1.0/gasoline_prices", function(err, rows){
 
     //restructured dataset
     dbDataSet = listLoop(rows[0])
