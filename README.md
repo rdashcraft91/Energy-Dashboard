@@ -1,5 +1,5 @@
 # Project2
-link to AWS: 
+link to AWS: http://eiadashboard-env.eba-hupry3ai.us-east-1.elasticbeanstalk.com/
 
 ## Topic:
 
