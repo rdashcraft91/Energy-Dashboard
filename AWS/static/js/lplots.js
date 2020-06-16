@@ -55,7 +55,7 @@ function barChart(currentState){
   
     };
 
-    barChart(currentState);
+
 
     Plotly.newPlot('barPlot', barTraces, layout);
 });
@@ -165,6 +165,8 @@ function buildData(currentState)
     };
  
     //console.log(allData_filtered);
+
+    barChart(currentState);
 
     //buildChart(indData_filtered);
     Plotly.newPlot("Electricplot", traces, layout);
