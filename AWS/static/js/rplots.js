@@ -284,9 +284,9 @@ function buildProductionPlot(production, population){
       labels.push(state[0]);
     })
 
-    console.log(labels);
+    // console.log(labels);
 
-    console.log(dataset);
+    // console.log(dataset);
 
     for (var i=0; i < 51; i++) {
       // var y_value = {'y': state_population[1][i]}
@@ -298,12 +298,11 @@ function buildProductionPlot(production, population){
       type: 'scatter',
       data: {
         datasets: [{
-            label: 'Total Renewable Energy Production by State Population',
+            // label: ,
             data: dataset,
-            backgroundColor: ['Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Red'],
+            // backgroundColor: ['Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Red'],
+            backgroundColor: colors,
             pointRadius: 10,
-        //     xAxisID: 'Total Renewable Energy Production (BTU)',
-        //     yAxisID: 'State Population',   
         }],
         labels: labels,
     },
@@ -315,7 +314,16 @@ function buildProductionPlot(production, population){
               return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
             }
           }
-        },  
+        },
+      legend: {
+          display: false,
+      },
+      title: {
+        text: 'Total Renewable Energy Production by State Population',
+        fontSize: 24,
+        fontStyle: 'bold',
+        display: true,
+      },
       scales: {
             xAxes: [{
                 type: 'linear',
@@ -335,21 +343,3 @@ function buildProductionPlot(production, population){
     }
 });
 }
-      // data: {
-      //   datasets: [{
-      //       data: dataset,
-      //       backgroundColor: colors,
-      //   }],
-      //   // These labels appear in the legend and in the tooltips when hovering different arcs
-      //   labels: labels,
-      //   },
-      // options: {
-      //   legend: { display: false },
-      //   title: {
-      //     display: true,
-      //     text: 'Production by State'
-      //   },
-      // },
-      // type: 'scatter'
-//   });
-// }
