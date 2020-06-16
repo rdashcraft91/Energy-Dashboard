@@ -12,10 +12,10 @@
 
 <body>
 
-  <div class="container" id="top">
+  <div class="container">
     <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>U.S. Energy Information Administration (EIA) Dashboard</h1>
+      <div class="col-md-12 jumbotron text-center" style="background-color:lightseagreen; color: floralwhite;">
+        <h1>U.S. Energy Information Administration (EIA) Dashboard</h1><hr>
         <p>Use the interactive charts below to explore the dataset</p>
         <p><a href="/api/v1.0">Available APIs</a><br></p>
       </div>
@@ -63,12 +63,12 @@
     <div class="row">
       <h2>Gasoline Prices and Emissions</h2>
       <div class="col-md-6">
-        <div id="map"></div>
-        <div id="chart"></div>
-      </div>
-      <div div class="col-md-6">
         <div id="map2"></div>
         <div id="chart2"></div>
+      </div>
+      <div div class="col-md-6">
+        <div id="map"></div>
+        <div id="chart"></div>
       </div>
       <div id="map"></div>
       <div id="chart"></div>
@@ -76,7 +76,7 @@
 
     <div class="row">
       <h2>Electric Energy Prices</h2>
-      <select id="selElectricPrices" onchange="buildElectricPricesPlot(this.value)">
+      <select id="selElectricPrices" onchange="buildData()">
 
       </select>
       <div id="Electricplot"></div>
