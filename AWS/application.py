@@ -14,7 +14,8 @@ client = pymongo.MongoClient("mongodb+srv://all_user:eiaproject@cluster0-qoy1h.m
 db = client.eia_db
 total_energy = db.total_energy
 state_energy = db.state_energy
-price_data = db.price_data
+gasoline_prices = db.gasoline_prices
+emissions_data = db.emissions_data
 energy_prices = db.energy_prices
 
 
@@ -57,9 +58,14 @@ def get_state_energy():
     data = list(state_energy.find())  # To look at all data
     return jsonify(data)  
 
-@app.route("/api/v1.0/price_data")
-def get_price_data():
-    data = list(price_data.find())  # To look at all data
+@app.route("/api/v1.0/gasoline_prices")
+def get_gasoline_prices():
+    data = list(gasoline_prices.find())  # To look at all data
+    return jsonify(data)     
+
+@app.route("/api/v1.0/emissions_data")
+def get_emissions_data():
+    data = list(emissions_data.find())  # To look at all data
     return jsonify(data)     
 
 @app.route("/api/v1.0/energy_prices")
