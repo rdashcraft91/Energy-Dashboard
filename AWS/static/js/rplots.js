@@ -276,7 +276,7 @@ function buildProductionPlot(production, population){
     var ctx = document.getElementById('stateProdPlot').getContext('2d');
 
     state_production.forEach(function(state){
-      var x_value = {'x': state[1]} 
+      var x_value = {'y': state[1]} 
       dataset.push(x_value);
     })
 
@@ -290,7 +290,7 @@ function buildProductionPlot(production, population){
 
     for (var i=0; i < 51; i++) {
       // var y_value = {'y': state_population[1][i]}
-      dataset[i]['y'] = (state_population[i][1])
+      dataset[i]['x'] = (state_population[i][1])
     }
     
     console.log(dataset);
@@ -322,13 +322,13 @@ function buildProductionPlot(production, population){
                 position: 'bottom',
                 scaleLabel: {
                   display: true,
-                  labelString: 'British Thermal Units (BTU)'
+                  labelString: 'State Population'
                 }
             }], 
             yAxes: [{
               scaleLabel: {
                 display: true,
-                labelString: 'State Population'
+                labelString: 'British Thermal Units (BTU) Produced'
               }
           }], 
         }
