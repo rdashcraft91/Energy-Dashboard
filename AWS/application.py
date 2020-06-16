@@ -41,7 +41,8 @@ def show_apis():
         f"<h4>Available Routes:</h4>"
         f'<a href="/api/v1.0/total_energy">/api/v1.0/total_energy</a><br/>'
         f'<a href="/api/v1.0/state_energy">/api/v1.0/state_energy</a><br/>'
-        f'<a href="/api/v1.0/price_data">/api/v1.0/price_data</a><br/>' 
+        f'<a href="/api/v1.0/gasoline_prices">/api/v1.0/gasoline_prices</a><br/>' 
+        f'<a href="/api/v1.0/emissions_data">/api/v1.0/emissions_data</a><br/>' 
         f'<a href="/api/v1.0/energy_prices">/api/v1.0/energy_prices</a><br/>'         
 
     )    
