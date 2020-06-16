@@ -1,3 +1,68 @@
+function barChart(currentState){
+
+  var dataUrl = '/api/v1.0/energy_prices';
+  
+  d3.json(dataUrl).then( (data)=>
+  {
+    var allArray = data[3];
+
+    usData = Object.values(allArray).filter(x => x.state == 'US');
+    stData = Object.values(allArray).filter(x => x.state == currentState);
+
+    barTraces = [];
+
+    usKeys = Object.keys(usData);
+    stKeys = Object.keys(stData);
+
+    console.log(stKeys);
+
+    //us bar chart
+    usKeys.forEach(function(key){
+      var trace1 = {
+        type: "bar",
+        name: "US",
+        marker: {color: "#D4E4F7"}, 
+        x: usData[key].data.map(row=> row[0]).slice(0,12).reverse(),
+        y: usData[key].data.map(row=> row[1]).slice(0,12).reverse(), 
+      }
+      barTraces.push(trace1);
+    });
+
+    //current state bar chart
+    stKeys.forEach(function(key){
+      var trace2 = {
+        type: "bar",
+        name: currentState,
+        marker: {color: "#236AB9"},
+        x: stData[key].data.map(row=> row[0]).slice(0,12).reverse(),
+        y: stData[key].data.map(row=> row[1]).slice(0,12).reverse(), 
+      }
+      barTraces.push(trace2);
+    });
+
+    var layout = {
+  
+     title: `Total Electricity Prices: US vs ${currentState}`,
+      xaxis: {
+          title: "Year",
+          type: "date",
+      },
+      yaxis: {
+        title: 'Cents Per kWh',
+        autorange: true,
+        type: "linear"
+      }
+  
+    };
+
+    Plotly.newPlot('barPlot', barTraces, layout);
+});
+
+}
+
+
+
+
 
 function buildData(currentState)
 {
@@ -18,7 +83,7 @@ function buildData(currentState)
     console.log(resData);
 
     var traces = [];
-
+    
     // Populate Residential Traces & Data
 
     resKeys = Object.keys(resData);
@@ -84,7 +149,7 @@ function buildData(currentState)
     var layout = {
   
       hovermode: 'closest',
-      title: `${currentState} Average Electricity Prices`,
+      title: `${currentState} Electricity Prices By Segment`,
       xaxis: {
           title: "Year",
           type: "date",
@@ -174,12 +239,12 @@ function init()
         });
 
       var usa = states[44];
+      var tx = states[43];
 
       //Will pass USA variable to buildchart function
       //buildCharts(usa);
       buildData(usa);
-
-      console.log(usa);
+      barChart(tx);
 
     });
 
@@ -188,6 +253,7 @@ function init()
 
 function optionChanged(newState) {
   buildData(newState);
+  barChart(newState);
 }
 
 init();
