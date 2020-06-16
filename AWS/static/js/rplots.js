@@ -225,7 +225,7 @@ d3.json(StateUrl).then(function (data) {
           title: "Energy Source",
         },
         yaxis: {
-          title: 'Trillion BTUs (British Thermal Unit)',
+          title: 'British Thermal Units (BTU)',
           autorange: true,
         }
       };
@@ -252,7 +252,7 @@ d3.json(StateUrl).then(function (data) {
           title: "Energy Source",
         },
         yaxis: {
-          title: 'Trillion BTUs (British Thermal Unit)',
+          title: 'British Thermal Units (BTU)',
           autorange: true,
         }
       };
@@ -298,10 +298,12 @@ function buildProductionPlot(production, population){
       type: 'scatter',
       data: {
         datasets: [{
-            label: 'Scatter Dataset',
+            label: 'Total Renewable Energy Production by State Population',
             data: dataset,
-            backgroundColor: colors,
+            backgroundColor: ['Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Blue', 'Red', 'Blue', 'Red', 'Red', 'Red', 'Red', 'Red', 'Blue', 'Blue', 'Blue', 'Red', 'Red', 'Red'],
             pointRadius: 10,
+        //     xAxisID: 'Total Renewable Energy Production (BTU)',
+        //     yAxisID: 'State Population',   
         }],
         labels: labels,
     },
@@ -318,7 +320,17 @@ function buildProductionPlot(production, population){
             xAxes: [{
                 type: 'linear',
                 position: 'bottom',
-            }]
+                scaleLabel: {
+                  display: true,
+                  labelString: 'British Thermal Units (BTU)'
+                }
+            }], 
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'State Population'
+              }
+          }], 
         }
     }
 });
