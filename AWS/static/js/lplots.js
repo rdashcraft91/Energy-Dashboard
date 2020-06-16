@@ -16,6 +16,11 @@ function barChart(currentState){
 
     console.log(stKeys);
 
+    if (currentState == 'US')
+    {
+
+      var title = "Total Electricity Prices: US";
+
     //us bar chart
     usKeys.forEach(function(key){
       var trace1 = {
@@ -28,6 +33,23 @@ function barChart(currentState){
       barTraces.push(trace1);
     });
 
+  }
+
+  else {
+
+      var title = `Total Electricity Prices: US vs ${currentState}`;
+        //us bar chart
+        usKeys.forEach(function(key){
+          var trace1 = {
+            type: "bar",
+            name: "US",
+            marker: {color: "#D4E4F7"}, 
+            x: usData[key].data.map(row=> row[0]).slice(0,12).reverse(),
+            y: usData[key].data.map(row=> row[1]).slice(0,12).reverse(), 
+          }
+          barTraces.push(trace1);
+        });
+
     //current state bar chart
     stKeys.forEach(function(key){
       var trace2 = {
@@ -39,10 +61,10 @@ function barChart(currentState){
       }
       barTraces.push(trace2);
     });
-
+  }
     var layout = {
   
-     title: `Total Electricity Prices: US vs ${currentState}`,
+     title: title,
       xaxis: {
           title: "Year",
           type: "date",
