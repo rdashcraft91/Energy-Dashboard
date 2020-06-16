@@ -6,8 +6,12 @@ d3.json(StateUrl).then(function (data) {
   console.log(data);
   // Delete id field in State Data
   delete data[0]._id;
+  delete data[1]._id;
+  delete data[2]._id;
 
-  buildStateSunburstPlot(data);
+  console.log(data[0]);
+
+  buildStateSunburstPlot(data[0]);
 
   // Create List of All States
   var allStateData = data[0];
@@ -19,6 +23,9 @@ d3.json(StateUrl).then(function (data) {
   // Send State Data to State Bar
   buildStateBar();
 
+  // Sent Production Data to Production Plot
+  buildProductionPlot(data[1], data[2]);
+
   // console.log(allStates);
 });
 
@@ -26,11 +33,7 @@ function buildStateSunburstPlot(data) {
 
   console.log(data);
 
-  // delete data[0]._id;
-
-  console.log(data[0]);
-
-  var consumption_data = data[0];
+  var consumption_data = data;
 
   var consumption_entries = Object.entries(consumption_data);
 
@@ -259,3 +262,82 @@ d3.json(StateUrl).then(function (data) {
   })  
 });
 }
+
+function buildProductionPlot(production, population){
+    console.log(production);
+    state_production = Object.entries(production);
+    state_population = Object.entries(population)
+    var dataset = [];
+    var labels = [];
+    var colors=[];
+    var nColors=50;
+    for (var i=0; i<nColors; i++)
+      colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
+    var ctx = document.getElementById('stateProdPlot').getContext('2d');
+
+    state_production.forEach(function(state){
+      var x_value = {'x': state[1]} 
+      dataset.push(x_value);
+    })
+
+    state_production.forEach(function(state){
+      labels.push(state[0]);
+    })
+
+    console.log(labels);
+
+    console.log(dataset);
+
+    for (var i=0; i < 51; i++) {
+      // var y_value = {'y': state_population[1][i]}
+      dataset[i]['y'] = (state_population[i][1])
+    }
+    
+    console.log(dataset);
+    var polarArea = new Chart(ctx, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+            label: 'Scatter Dataset',
+            data: dataset,
+            backgroundColor: colors,
+            pointRadius: 10,
+        }],
+        labels: labels,
+    },
+    options: {
+      tooltips: {
+          callbacks: {
+            label: function(tooltipItem, data) {
+              var label = data.labels[tooltipItem.index];
+              return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+            }
+          }
+        },  
+      scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom',
+            }]
+        }
+    }
+});
+}
+      // data: {
+      //   datasets: [{
+      //       data: dataset,
+      //       backgroundColor: colors,
+      //   }],
+      //   // These labels appear in the legend and in the tooltips when hovering different arcs
+      //   labels: labels,
+      //   },
+      // options: {
+      //   legend: { display: false },
+      //   title: {
+      //     display: true,
+      //     text: 'Production by State'
+      //   },
+      // },
+      // type: 'scatter'
+//   });
+// }

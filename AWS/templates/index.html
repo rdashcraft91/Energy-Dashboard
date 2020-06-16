@@ -17,8 +17,7 @@
       <div class="col-md-12 jumbotron text-center">
         <h1>U.S. Energy Information Administration (EIA) Dashboard</h1>
         <p>Use the interactive charts below to explore the dataset</p>
-        <p><a href="/api/v1.0">Available APIs</a><br>
-      </p>
+        <p><a href="/api/v1.0">Available APIs</a><br></p>
       </div>
     </div>
 
@@ -41,7 +40,7 @@
     </div>
 
     <div class="row">
-      <h2 class="state-header">Breakdown of Renewable Energy Sources</h2>
+      <h2>Breakdown of Renewable Energy Sources</h2>
       <div class="row">
         <select id="selStateEnergy" onchange="buildStateBar()">
           <option value="All">All</option>
@@ -55,6 +54,9 @@
         <div class="col-lg-6">
           <div id="totalStateplot"></div>
         </div>
+      </div>
+      <div class="row" style="margin-top: 50px;">
+          <canvas id="stateProdPlot" maxwidth="200" maxheight="200"></canvas>
       </div>
     </div>
 
@@ -82,6 +84,7 @@
   <script src="static/js/vplots.js"></script>
   <script src="static/js/rplots.js"></script>
   <script src="static/js/fplots.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
 </body>
 
