@@ -11,7 +11,7 @@ Link to Dashboard: http://eiadashboard-env.eba-hupry3ai.us-east-1.elasticbeansta
 
 ## Background and Motivation:
 
-<div style="align: justify";>Inspired by the importance of energy trends in the United States, and particularly to the city of Houston, our group wanted to use data provided by the Energy Information Administration (EIA) to create a single, consolidated dashboard to make sense of the vast amount of available energy data. To that end, our group sought to answer the following questions: </div>
+<div style="text-align: justify";>Inspired by the importance of energy trends in the United States, and particularly to the city of Houston, our group wanted to use data provided by the Energy Information Administration (EIA) to create a single, consolidated dashboard to make sense of the vast amount of available energy data. To that end, our group sought to answer the following questions: 
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ins>Q1</ins>: What is the USA total energy consumption/production by source? <br/>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Data Source: https://www.eia.gov/opendata/qb.php?category=711239)
@@ -23,7 +23,7 @@ Link to Dashboard: http://eiadashboard-env.eba-hupry3ai.us-east-1.elasticbeansta
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Data Source: https://www.eia.gov/opendata/qb.php?category=40)
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ins>Q4</ins>: What is the average retail price of oil and gas by state and sector? <br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Data Source: https://www.eia.gov/opendata/qb.php?category=241020)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Data Source: https://www.eia.gov/opendata/qb.php?category=241020)</div>
 
 ## Development and Deployment:
 
