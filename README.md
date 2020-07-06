@@ -29,7 +29,21 @@ Q4: What is the average retail price of oil and gas by state and sector?
 
 Each team member used a combination of API Requests, Python, Pandas, and PyMongo to pull their data from the EIA website, clean the data, and send that data to our MongoDB Atlas database. Using the cloud-stored data, we each created plots using JavaScript to answer our questions above. Each plot was created using either the plotly or chartjs library. After finalizing our individual charts, we deployed the entire dashboard to the web using Amazon Web Services.
  
+## Total Energy Consupmtion/Production in the United States
 
+Vikash
+
+## Renewable Energy Sources Consumed/Produced by State
+
+Ryan
+
+## Retail Price of Electricity by State
+
+Florin
+
+## Retail Price of Oil and Gas by State
+
+Luis
 
 [b. data streaming: EIA site -> data clean-up -> db update -> plot generation -> publishing
 
