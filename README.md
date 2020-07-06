@@ -13,17 +13,17 @@ Link to Dashboard: http://eiadashboard-env.eba-hupry3ai.us-east-1.elasticbeansta
 
 Inspired by the importance of energy trends in the United States, and particularly to the city of Houston, our group wanted to use data provided by the Energy Information Administration (EIA) to create a single, consolidated dashboard to make sense of the vast amount of available energy data. To that end, our group sought to answer the following questions:
 
-Q1: What is the USA total energy consumption/production by source?
-(Source: https://www.eia.gov/opendata/qb.php?category=711239)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q1: What is the USA total energy consumption/production by source? <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Source: https://www.eia.gov/opendata/qb.php?category=711239)
 
-Q2: Which renewable energy source does each state use/produce the most?
-(Source: https://www.eia.gov/opendata/qb.php?category=40203)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q2: Which renewable energy source does each state use/produce the most? <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Source: https://www.eia.gov/opendata/qb.php?category=40203)
 
-Q3: What is the average retail price of electricity by state and sector?
-(Source: https://www.eia.gov/opendata/qb.php?category=40)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q3: What is the average retail price of electricity by state and sector? <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Source: https://www.eia.gov/opendata/qb.php?category=40)
 
-Q4: What is the average retail price of oil and gas by state and sector?
-(Source: https://www.eia.gov/opendata/qb.php?category=241020)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q4: What is the average retail price of oil and gas by state and sector? <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Source: https://www.eia.gov/opendata/qb.php?category=241020)
 
 ## Development and Deployment:
 
