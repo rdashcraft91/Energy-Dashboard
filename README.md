@@ -11,7 +11,7 @@ Link to Dashboard: http://eiadashboard-env.eba-hupry3ai.us-east-1.elasticbeansta
 
 ## Background and Motivation:
 
-<div style="text-align: justify";>Inspired by the importance of energy trends in the United States, and particularly to the city of Houston, our group wanted to use data provided by the Energy Information Administration (EIA) to create a single, consolidated dashboard to make sense of the vast amount of available energy data. To that end, our group sought to answer the following questions: </div></br>
+Inspired by the importance of energy trends in the United States, and particularly to the city of Houston, our group wanted to use data provided by the Energy Information Administration (EIA) to create a single, consolidated dashboard to make sense of the vast amount of available energy data. To that end, our group sought to answer the following questions:
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ins>Q1</ins>: What is the USA total energy consumption/production by source? <br/>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Data Source: https://www.eia.gov/opendata/qb.php?category=711239)
@@ -27,23 +27,23 @@ Link to Dashboard: http://eiadashboard-env.eba-hupry3ai.us-east-1.elasticbeansta
 
 ## Development and Deployment:
 
-<div style="text-align: justify;">Each team member used a combination of API Requests, Python, Pandas, and PyMongo to pull their data from the EIA website, clean the data, and send that data to our MongoDB Atlas database. Using the cloud-stored data, we each created plots using JavaScript to answer our questions above. Each plot was created using either the plotly or chartjs library. After finalizing our individual charts, we deployed the entire dashboard to the web using Amazon Web Services. </div>
+Each team member used a combination of API Requests, Python, Pandas, and PyMongo to pull their data from the EIA website, clean the data, and send that data to our MongoDB Atlas database. Using the cloud-stored data, we each created plots using JavaScript to answer our questions above. Each plot was created using either the plotly or chartjs library. After finalizing our individual charts, we deployed the entire dashboard to the web using Amazon Web Services.
  
 ## Total Energy Consupmtion/Production in the United States
 
-<div style="text-align: justify">Vikash</div>
+Vikash
 
 ## Renewable Energy Sources Consumed/Produced by State
 
-<div style="text-align: justify">Ryan</div>
+Ryan
 
 ## Retail Price of Electricity by State
 
-<div style="text-align: justify">Florin</div>
+Florin
 
 ## Retail Price of Oil and Gas by State
 
-<div style="text-align: justify">Luis</div>
+Luis
 
 [b. data streaming: EIA site -> data clean-up -> db update -> plot generation -> publishing
 
