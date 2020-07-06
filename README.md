@@ -4,10 +4,10 @@ Link to Dashboard: http://eiadashboard-env.eba-hupry3ai.us-east-1.elasticbeansta
 
 ## Team Members:
 
-Florin Vasiliu
-Luis Olguin
-Ryan Ashcraft
-Vikash Bhakta
+- Florin Vasiliu
+- Luis Olguin
+- Ryan Ashcraft
+- Vikash Bhakta
 
 ## Background and Motivation:
 
