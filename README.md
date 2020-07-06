@@ -11,12 +11,12 @@ Vikash Bhakta
 
 ## Background and Motivation:
 
-Inspired to make sense of all the information and stories about energy trends in the United States, our group decided to use data provided by the Energy Information Administration (EIA) to create a single, consolidated dashboard to answer the following questions:
+Inspired by the importance of energy trends in the United States, and particularly to the city of Houston, our group wanted to use data provided by the Energy Information Administration (EIA) to create a single, consolidated dashboard to make sense of the vast amount of available energy data. To that end, our group sought to answer the following questions:
 
 Q1: What is the USA total energy consumption/production by source?
 (Source: https://www.eia.gov/opendata/qb.php?category=711239)
 
-Q2: Which energy source does each state use/produce the most?
+Q2: Which renewable energy source does each state use/produce the most?
 (Source: https://www.eia.gov/opendata/qb.php?category=40203)
 
 Q3: What is the average retail price of electricity by state and sector?
@@ -25,17 +25,13 @@ Q3: What is the average retail price of electricity by state and sector?
 Q4: What is the average retail price of oil and gas by state and sector?
 (Source: https://www.eia.gov/opendata/qb.php?category=241020)
 
-## Agenda:
+## Development and Deployment:
 
-1. Development:
-
-a. Tools Used
- - Python (requests, pandas, numpy, flask)
- - JavaScript (plotly, chart.js)
- - MongoDB Atlas
- - Amazon Web Services
+Each team member used a combination of API Requests, Python, Pandas, and PyMongo to pull their data from the EIA website, clean the data, and send that data to our MongoDB Atlas database. Using the cloud-stored data, we each created plots using JavaScript to answer our questions above. Each plot was created using either the plotly or chartjs library. After finalizing our individual charts, we deployed the entire dashboard to the web using Amazon Web Services.
  
-b. data streaming: EIA site -> data clean-up -> db update -> plot generation -> publishing
+
+
+[b. data streaming: EIA site -> data clean-up -> db update -> plot generation -> publishing
 
 2. Energy sources breakdown and evolution by time
 
@@ -43,6 +39,6 @@ b. data streaming: EIA site -> data clean-up -> db update -> plot generation -> 
 
 4. Electricity prices
 
-5. Emissions and gas prices
+5. Emissions and gas prices]
 
   
