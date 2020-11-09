@@ -28,31 +28,4 @@ Inspired by the importance of energy trends in the United States, and particular
 ## Development and Deployment:
 
 Each team member used a combination of API Requests, Python, Pandas, and PyMongo to pull their data from the EIA website, clean the data, and send that data to our MongoDB Atlas database. Using the cloud-stored data, we each created plots using JavaScript to answer our questions above. Each plot was created using either the plotly or chartjs library. After finalizing our individual charts, we deployed the entire dashboard to the web using Amazon Web Services.
- 
-## Total Energy Consupmtion/Production in the United States
-
-Vikash
-
-## Renewable Energy Sources Consumed/Produced by State
-
-Ryan
-
-## Retail Price of Electricity by State
-
-Florin
-
-## Retail Price of Oil and Gas by State
-
-Luis
-
-[b. data streaming: EIA site -> data clean-up -> db update -> plot generation -> publishing
-
-2. Energy sources breakdown and evolution by time
-
-3. Renewable energy sources breakdown by state
-
-4. Electricity prices
-
-5. Emissions and gas prices]
-
   
